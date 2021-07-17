@@ -1,24 +1,59 @@
-type Person = {
-    name: string;
-    age?: number; // ?는 age가 있을수도 있고 없을수도 있다는 뜻
+// generics를 사용하면 실제 파라미터에 넣는 타입이 유추가 됨
+
+// 함수에서 Generics 사용
+function wrap<T>(param: T) {
+    return {
+        param
+    };
 }
 
-type Developer = Person & { // Person &가 상속 받겠다는 뜻
-    skills: string[];
+const wrapped = wrap(10);
+
+// interface에서 Generics 사용
+interface Items<T> {
+    list: T[]
 };
 
-const person: Person = {
-    name: '정태환',
-    age: 18,
+const items: Items<string> = {
+    list: ['a', 'b', 'c']
+}
+
+// type에서 Generics 사용
+type List<T, V> = {
+    list: T[],
+    value: V
 };
 
-const taehwan: Developer = {
-    name: '정태환',
-    skills: ['javascript', 'react', 'sass', 'jest']
+const list: List<string, number> = {
+    list: ['a', 'b', 'c'],
+    value: 12
 };
 
-type People = Person[];
-const people: People = [person, taehwan];
+// Generic으로 Queue만들기
 
-type Color = 'red' | 'orange' | 'yellow';
-const color: Color = 'orange';
+class Queue<T> {
+    list: T[] = [];
+
+    get length() {
+        return this.list.length;
+    }
+
+    enqueue(item: T) {
+        this.list.push(item);
+    }
+
+    dequeue() {
+        return this.list.shift();
+    }
+}
+
+const queue = new Queue<number>();
+queue.enqueue(0);
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+queue.enqueue(4);
+
+while (queue.length > 0) {
+    console.log(queue.dequeue());
+}
