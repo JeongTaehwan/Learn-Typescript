@@ -1,0 +1,12 @@
+{
+  "name": "ts-practice2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/JeongTaehwan/Learn-Typescript.git",
+  "author": "Tapuwan <68889258+JeongTaehwan@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  }
+}
