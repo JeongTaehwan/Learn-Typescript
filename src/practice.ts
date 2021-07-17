@@ -1,15 +1,18 @@
-let count = 0;
-count += 1;
+function sumArray(numbers: number[]): number {
+    return numbers.reduce((acc, current) => acc + current, 0);
+};
 
-const message: string = 'hello world!'; // 문자열
-const done: boolean = true; // 참 거짓
+const total = sumArray([1, 2, 3, 4, 5]);
+console.log(total);
 
-const number: number[] = [1, 2, 3]; // 배열
-const messages: string[] = ['hello', 'world!']; // 문자열 배열
+function returnNothing() { // 함수에서 아무것도 반환하지 않으면 반환 타입이 void로 설정됨
+    console.log('어쩌고저쩌고');
+}
 
+returnNothing();
 
-let mightBeUndifined: string | undefined = undefined; // 값이 문자열이거나 undefined일때
-let nullableNumber: number | null = null; // 값이 숫자거나 null일때
+function returnStringOrNumber(): number | string {
+    return '문자열';
+}
 
-let color: 'red' | 'orange' | 'yellow' = 'red';  // 값이 red,orange,yellow중에 하나 일때
-color = 'yellow';
+returnStringOrNumber();
