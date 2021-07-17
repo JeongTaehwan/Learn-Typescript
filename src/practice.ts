@@ -1,18 +1,28 @@
-function sumArray(numbers: number[]): number {
-    return numbers.reduce((acc, current) => acc + current, 0);
-};
-
-const total = sumArray([1, 2, 3, 4, 5]);
-console.log(total);
-
-function returnNothing() { // 함수에서 아무것도 반환하지 않으면 반환 타입이 void로 설정됨
-    console.log('어쩌고저쩌고');
+interface Shape {
+    getArea(): number;
 }
 
-returnNothing();
-
-function returnStringOrNumber(): number | string {
-    return '문자열';
+class Circle implements Shape { // implemets는 조건에 부합한다라는 뜻
+    constructor(public radius: number) { // public은 바깥에서도 알 수 있음
+    }
+    getArea() {
+        return this.radius * this.radius * Math.PI;
+    }
 }
 
-returnStringOrNumber();
+class Rectangle implements Shape {
+    constructor(private width: number, private height: number) { // private은 바깥에서 알 수 없음
+    }
+
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+const circle = new Circle(5);
+const rectangle = new Rectangle(2, 5);
+const shapes: Shape[] = [circle, rectangle];
+
+shapes.forEach(shape => {
+    console.log(shape.getArea());
+});
