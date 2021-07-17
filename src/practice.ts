@@ -1,28 +1,24 @@
-interface Shape {
-    getArea(): number;
+type Person = {
+    name: string;
+    age?: number; // ?는 age가 있을수도 있고 없을수도 있다는 뜻
 }
 
-class Circle implements Shape { // implemets는 조건에 부합한다라는 뜻
-    constructor(public radius: number) { // public은 바깥에서도 알 수 있음
-    }
-    getArea() {
-        return this.radius * this.radius * Math.PI;
-    }
-}
+type Developer = Person & { // Person &가 상속 받겠다는 뜻
+    skills: string[];
+};
 
-class Rectangle implements Shape {
-    constructor(private width: number, private height: number) { // private은 바깥에서 알 수 없음
-    }
+const person: Person = {
+    name: '정태환',
+    age: 18,
+};
 
-    getArea() {
-        return this.width * this.height;
-    }
-}
+const taehwan: Developer = {
+    name: '정태환',
+    skills: ['javascript', 'react', 'sass', 'jest']
+};
 
-const circle = new Circle(5);
-const rectangle = new Rectangle(2, 5);
-const shapes: Shape[] = [circle, rectangle];
+type People = Person[];
+const people: People = [person, taehwan];
 
-shapes.forEach(shape => {
-    console.log(shape.getArea());
-});
+type Color = 'red' | 'orange' | 'yellow';
+const color: Color = 'orange';
